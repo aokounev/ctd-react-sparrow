@@ -84,20 +84,6 @@ const TodoContainer = ({ tableName, searchTerm, handleImageClick, image }) => {
     }
   }, [todoList, isLoading]);
 
-  const handleSortByTitle = async () => {
-    setIsLoading(true);
-    const isAscending = direction === "asc";
-    const sortDirection = isAscending ? "desc" : "asc";
-    setDirection(sortDirection);
-    try {
-      const result = await requestSortData(tableName, sortDirection);
-      setTodoList(result.records);
-    } catch (error) {
-      setErrorMessage("Error sorting data. Please try again.");
-    }
-    setIsLoading(false);
-  };
-
   const handleSortByTime = () => {
     const sortedList = [...todoList].sort((a, b) => {
       const createdTimeA = new Date(a.fields.createdTime);
@@ -111,6 +97,22 @@ const TodoContainer = ({ tableName, searchTerm, handleImageClick, image }) => {
     setTodoList(sortedList);
     setSortByTimeAsc(!sortByTimeAsc);
   };
+  
+  const handleSortByTitle = () => {
+    const isAscending = sortByTitleAsc;
+    const sortedList = [...todoList].sort((a, b) => {
+      const titleA = a.title.toUpperCase();
+      const titleB = b.title.toUpperCase();
+      if (isAscending) {
+        return titleA.localeCompare(titleB);
+      } else {
+        return titleB.localeCompare(titleA);
+      }
+    });
+    setTodoList(sortedList);
+    setSortByTitleAsc(!isAscending);
+  };
+  
 
   const addTodo = async (newTodo, tableName) => {
     try {
