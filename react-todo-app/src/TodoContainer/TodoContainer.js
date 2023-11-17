@@ -110,8 +110,9 @@ const TodoContainer = ({ tableName, searchTerm, handleImageClick, image }) => {
       }
     });
     setTodoList(sortedList);
-    setSortByTitleAsc(!isAscending);
+    setSortByTitleAsc(!sortByTitleAsc);
   };
+  
   
 
   const addTodo = async (newTodo, tableName) => {
