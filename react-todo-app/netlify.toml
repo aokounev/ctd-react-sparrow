@@ -1,17 +1,13 @@
 [build]
+  base = "react-todo-app"
   command = "npm run build"
-  functions = "netlify/deploy"
-  publish = "build"
-
+  publish = "react-todo-app/build"
 
 [build.environment]
   NODE_VERSION = "20"
   NODE_OPTIONS = "--openssl-legacy-provider"
 
-
-  ## Uncomment to use this redirect for Single Page Applications like create-react-app.
-  ## Not needed for static site generators.
-  [[redirects]]
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
