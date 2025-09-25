@@ -1,7 +1,6 @@
 [build]
-  base = "react-todo-app"
   command = "npm run build"
-  publish = "react-todo-app/build"
+  publish = "build"
 
 [build.environment]
   NODE_VERSION = "20"
