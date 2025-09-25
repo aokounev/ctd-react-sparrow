@@ -30,6 +30,9 @@
     "build": "react-scripts --openssl-legacy-provider build",
     "dev": "react-scripts --openssl-legacy-provider start"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
